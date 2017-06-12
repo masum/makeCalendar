@@ -1,0 +1,29 @@
+<html>
+<script  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script>
+function start(val) {
+    var date = new Date(val);
+    var week = [ "", "月", "火", "水", "木", "金", "" ] ;
+    var month = date.getMonth();
+    var ar = [];
+    ar.push("| 日 | 投稿者 | 記事 |<br/>");
+    ar.push("|--|--|--|<br/>");
+    while(date.getMonth() == month) {
+        w = date.getDay();
+        console.log(w);
+        if ((w!=0) && (w!=6)) {
+            ar.push("| " + date.getDate() + "(" + week[date.getDay()] + ") | | |<br/>");
+        }
+        date.setDate(date.getDate()+1);
+    }
+    $("#content").html(ar.join(""));
+}
+$(document).ready(function() {
+    $("#btn").click(function() {
+        start($("#in").val());
+    });
+});
+</script>
+<input type="input" id="in" placeholder="2017/6"><button id="btn">make</button>
+<div id="content"></div>
+</html>
